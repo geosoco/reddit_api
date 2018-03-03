@@ -8,15 +8,14 @@ from datetime import datetime, timedelta
 import time
 import requests
 import requests.auth
+import os
+import platform
 
 
 
 REDDIT_CLIENT_AUTH_URL = "https://www.reddit.com/api/v1/access_token"
 REDDIT_OAUTH_ENDPOINT_BASE = "https://oauth.reddit.com/"
 
-_headers = {
-    'User-Agent': 'Mac OSX:com.emcomp.smcap:0.1 /u/geosoco'
-}
 
 #
 #
@@ -120,13 +119,19 @@ class OAuthConnnection(object):
         self.access_token = None
         self.auth = None
         self.headers = {
-            'User-Agent': user_agent
+            'User-Agent': self.format_user_agent(user_agent)
         }
 
         self.connected = False
 
         self.connect()
         self.rate_limiter = RateLimiter(num_requests=60)
+
+
+    def format_user_agent(self, base_user_agent):
+        return base_user_agent.format(
+            platform=platform.system(),
+            release=platform.release())
 
     def is_connected(self):
         """ Returns true if connected. """
