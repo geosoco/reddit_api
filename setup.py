@@ -11,7 +11,7 @@ setup(name='reddit',
       author='John Robinson',
       author_email='pubsoco@geosoco.com',
       license='BSD',
-      packages=['reddit_api'],
+      packages=['reddit'],
       platforms='any',
       classifiers=[
         'Development Status :: 3 - Alpha',
