@@ -24,4 +24,4 @@ class SubredditListing(Listing):
             connection,
             connection.build_oauth_url(
                 "r/{}/{}/.json", subreddit, sort),
-            **kwargs)
+            params=kwargs)
