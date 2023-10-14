@@ -4,7 +4,7 @@
 """
 Live Item endpoints
 """
-from ..structures import Listing
+from ..structures import Listing, Thing
 
 
 """
@@ -25,3 +25,17 @@ class SubredditListing(Listing):
             connection.build_oauth_url(
                 "r/{}/{}/.json", subreddit, sort),
             params=kwargs)
+
+
+class SubredditAbout(Thing):
+    """
+    """
+
+    def __init__(self, connection, subreddit, **kwargs):
+
+        super(SubredditAbout, self).__init__(
+            connection,
+            connection.build_oauth_url(
+                "r/{}/about.json", subreddit),
+            params=kwargs)
+
